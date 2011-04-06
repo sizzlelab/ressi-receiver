@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 set :application, "ressi"
 
 set :scm, :git
-set :repository,  "git://github.com/sizzlelab/ressi.git"
+set :repository,  "git://github.com/sizzlelab/ressi-receiver.git"
 set :deploy_via, :remote_cache
 
 if ENV['DEPLOY_ENV'] == "alpha" 
@@ -31,7 +31,7 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'receiver/tmp','restart.txt')}"
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   
   task :setup do
@@ -42,8 +42,8 @@ namespace :deploy do
   end
   
   task :symlinks_to_shared_path do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/receiver/config/database.yml"
-    run "ln -nfs #{shared_path}/log #{release_path}/receiver/log"
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/log #{release_path}/log"
     
   end
   

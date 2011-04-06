@@ -1,0 +1,7 @@
+db/*.sqlite3
+config/database.yml
+config/config.yml
+log/
+tmp/**/*
+tmp/autotest-flag
+.rvmrc
